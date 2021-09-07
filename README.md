@@ -25,6 +25,6 @@ Basta rodar o comando `dotnet run` dentro da pasta que se encontra o arquivo ent
 
 ## Rodar testes
 
-Basta rodar o comando `dotnet test .\Solution.sln` dentro da root.
+Basta rodar o comando `dotnet test .\Solution.sln` dentro da pasta que se encontra este README.
 
 <br>
