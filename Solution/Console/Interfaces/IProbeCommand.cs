@@ -1,7 +1,9 @@
-﻿namespace Console.Interfaces
+﻿using Console.Entities;
+
+namespace Console.Interfaces
 {
     public interface IProbeCommand
     {
-        void DoAction(Probe probe);
+        void Execute(Probe probe);
     }
 }

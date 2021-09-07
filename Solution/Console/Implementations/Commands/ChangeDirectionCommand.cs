@@ -1,4 +1,5 @@
-﻿using Console.Interfaces;
+﻿using Console.Entities;
+using Console.Interfaces;
 
 namespace Console.Implementations
 {
@@ -11,7 +12,7 @@ namespace Console.Implementations
             value = direction == 'L' ? -1 : 1;
         }
 
-        public void DoAction(Probe probe)
+        public void Execute(Probe probe)
         {
             probe.ChangeDirection(value);
         }

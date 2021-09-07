@@ -1,4 +1,5 @@
-﻿using Console.Interfaces;
+﻿using Console.Entities;
+using Console.Interfaces;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;

@@ -1,8 +1,9 @@
-﻿using Console.Interfaces;
+﻿using Console.Enums;
+using Console.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Console
+namespace Console.Entities
 {
     public class Probe
     {
@@ -17,16 +18,16 @@ namespace Console
         public IReadOnlyList<IProbeCommand> Commands => _commands;
 
 
-        public Probe(ProbeParams probeParams, Position max)
+        public Probe(Position initial, Position max, WindroseEnum direction, IEnumerable<IProbeCommand> commands)
         {
             this.max = max;
 
-            XAsis = probeParams.InitialPosition.xaxis;
-            YAsis = probeParams.InitialPosition.yaxis;
+            XAsis = initial.xaxis;
+            YAsis = initial.yaxis;
 
-            _direction = (int)probeParams.Direction;
+            _direction = (int)direction;
 
-            _commands = probeParams.Commands.ToList();
+            _commands = commands.ToList();
         }
 
         public void Move()
@@ -34,16 +35,16 @@ namespace Console
             switch (Direction)
             {
                 case WindroseEnum.N:
-                    YAsis = (YAsis + 1 > max.yaxis) ? max.yaxis : YAsis+1;
+                    YAsis = YAsis + 1 > max.yaxis ? max.yaxis : YAsis + 1;
                     break;
                 case WindroseEnum.E:
-                    XAsis = (XAsis + 1 > max.xaxis) ? max.xaxis : XAsis+1;
+                    XAsis = XAsis + 1 > max.xaxis ? max.xaxis : XAsis + 1;
                     break;
                 case WindroseEnum.S:
-                    YAsis = (YAsis - 1 < min.yaxis) ? min.yaxis : YAsis-1;
+                    YAsis = YAsis - 1 < min.yaxis ? min.yaxis : YAsis - 1;
                     break;
                 case WindroseEnum.W:
-                    XAsis = (XAsis - 1 < min.xaxis) ? min.xaxis : XAsis-1;
+                    XAsis = XAsis - 1 < min.xaxis ? min.xaxis : XAsis - 1;
                     break;
                 default:
                     break;
@@ -63,7 +64,7 @@ namespace Console
 
         public void ExecuteCommands()
         {
-            _commands.ForEach(item => item.DoAction(this));
+            _commands.ForEach(item => item.Execute(this));
         }
 
         public override string ToString()

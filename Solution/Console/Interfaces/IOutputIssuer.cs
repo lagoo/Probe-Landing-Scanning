@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Console.Entities;
+using System.Collections.Generic;
 
 namespace Console.Interfaces
 {

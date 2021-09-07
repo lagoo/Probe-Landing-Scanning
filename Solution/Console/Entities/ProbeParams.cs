@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Console.Enums;
+using Console.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace Console.Interfaces
+namespace Console.Entities
 {
     public class ProbeParams
     {
         public Position InitialPosition { get; }
-
         public WindroseEnum Direction { get; }
 
         private readonly List<IProbeCommand> _commands;
-        public IReadOnlyList<IProbeCommand> Commands => _commands;
+        public IEnumerable<IProbeCommand> Commands => _commands;
 
         public ProbeParams(Position inital, char direction)
         {
@@ -21,7 +22,7 @@ namespace Console.Interfaces
                 'E' => WindroseEnum.E,
                 'S' => WindroseEnum.S,
                 'W' => WindroseEnum.W,
-                _ => throw new NotImplementedException(),
+                _ => throw new NotImplementedException("Não foi possivel converter valor para as rosa dos ventos!!"),
             };
             _commands = new List<IProbeCommand>();
         }

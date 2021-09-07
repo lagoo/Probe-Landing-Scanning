@@ -1,4 +1,4 @@
-﻿namespace Console
+﻿namespace Console.Enums
 {
     public enum WindroseEnum
     {
