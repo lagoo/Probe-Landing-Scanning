@@ -27,8 +27,8 @@ namespace Console
 
                     services.AddScoped<IInputInterpreter, FileInputInterpreter>();
 
-                    services.AddScoped<IOutputIssuer, FileOutputIssuer>();
-                    //services.AddScoped<IOutputIssuer, ConsoleOutputIssuer>();
+                    //services.AddScoped<IOutputIssuer, FileOutputIssuer>();
+                    services.AddScoped<IOutputIssuer, ConsoleOutputIssuer>();
                 });
     }
 }
