@@ -16,7 +16,7 @@ namespace Console.Implementations
                 command = new MoveOnDirectionCommand();
 
             if (command == null)
-                throw new Exception("Não foi possivel converter ação informada!!");
+                throw new NotImplementedException("Não foi possivel converter ação informada!!");
 
             return command;
         }
