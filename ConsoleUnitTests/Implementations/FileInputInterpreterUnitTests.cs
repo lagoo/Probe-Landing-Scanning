@@ -61,7 +61,7 @@ namespace ConsoleUnitTests.Implementations
         {
             // Arrange
             Mock<IDataReader> moqDataReader = new();
-            moqDataReader.Setup(e => e.Read(FileInputInterpreter.fileName)).Returns(new string[] { "1 A", "1 A N", "MRL" });
+            moqDataReader.Setup(e => e.Read(FileInputInterpreter.fileName)).Returns(new string[] { "1 1", "1 A N", "MRL" });
             Mock<ICommandFactory> moqCommandFactory = new();
 
             // Act
