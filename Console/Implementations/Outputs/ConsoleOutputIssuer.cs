@@ -10,7 +10,7 @@ namespace Console.Implementations
         {
             foreach (var item in probes)
             {
-               System.Console.WriteLine(item.ToString());
+               System.Console.WriteLine(item.ToString() );
             }
         }
     }

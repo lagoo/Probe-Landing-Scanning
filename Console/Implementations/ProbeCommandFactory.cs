@@ -15,6 +15,9 @@ namespace Console.Implementations
             if (action == 'M')
                 command = new MoveOnDirectionCommand();
 
+            if (action == 'F')
+                command = new FlagDirectionCommand();
+
             if (command == null)
                 throw new NotImplementedException("Não foi possivel converter ação informada!!");
 

@@ -37,6 +37,20 @@ namespace ConsoleUnitTests.Implementations
 
 
         [Fact()]
+        public void Create_FlagOnDirection_ShouldReturnFlagDirectionCommand()
+        {
+            // Arrange
+            ProbeCommandFactory stu = new();
+
+            // Act
+            var result = stu.Create('F');
+
+            // Assert
+            result.Should().BeOfType<FlagDirectionCommand>();
+        }
+
+
+        [Fact()]
         public void Create_InvalidAction_ShouldThrowNotImplementedException()
         {
             // Arrange

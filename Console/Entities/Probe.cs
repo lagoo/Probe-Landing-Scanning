@@ -11,12 +11,13 @@ namespace Console.Entities
         private readonly Position max;
         private int _direction;
         private readonly List<IProbeCommand> _commands;
+        private readonly List<string> _flag;
 
         public int XAsis { get; private set; }
         public int YAsis { get; private set; }
         public WindroseEnum Direction => (WindroseEnum)_direction;
         public IReadOnlyList<IProbeCommand> Commands => _commands;
-
+        public IReadOnlyList<string> Flags => _flag;
 
         public Probe(Position initial, Position max, WindroseEnum direction, IEnumerable<IProbeCommand> commands)
         {
@@ -28,6 +29,7 @@ namespace Console.Entities
             _direction = (int)direction;
 
             _commands = commands.ToList();
+            _flag = new List<string>();
         }
 
         public void Move()
@@ -67,9 +69,19 @@ namespace Console.Entities
             _commands.ForEach(item => item.Execute(this));
         }
 
+        public void MarkFlag()
+        {
+            _flag.Add($"{XAsis} {YAsis} {Direction}");
+        }
+
         public override string ToString()
         {
-            return $"{XAsis} {YAsis} {Direction}";
+            string flags = string.Empty;
+
+            if (_flag.Any())
+                flags = $" - {string.Join(';', _flag)}";
+
+            return $"{XAsis} {YAsis} {Direction}{flags}";
         }
     }
 }

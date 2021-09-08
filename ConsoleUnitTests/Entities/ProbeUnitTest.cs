@@ -4,6 +4,7 @@ using Console.Interfaces;
 using FluentAssertions;
 using Moq;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace ConsoleUnitTests.Entities
@@ -92,6 +93,24 @@ namespace ConsoleUnitTests.Entities
             // Assert
             stu.XAsis.Should().Be(xasis);
             stu.YAsis.Should().Be(yasis);
+        }
+
+        [Fact()]
+        public void MarkFlag_ShouldAddMarkFlagWithActualStaus()
+        {
+            // Arrange
+            Position inital = new(1, 1);
+            Position max = new(2, 2);
+            List<IProbeCommand> commands = new();
+
+            Probe stu = new(inital, max, WindroseEnum.N, commands);
+
+            // Act
+            stu.MarkFlag();
+
+            // Assert
+            stu.Flags.Should().HaveCount(1);
+            stu.Flags.First().Should().Be($"1 1 N");
         }
     }
 }
